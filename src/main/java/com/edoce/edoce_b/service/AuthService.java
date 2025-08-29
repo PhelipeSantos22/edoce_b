@@ -7,11 +7,13 @@ import com.edoce.edoce_b.model.User;
 import com.edoce.edoce_b.repository.UserRepository;
 import com.edoce.edoce_b.exceptions.UserIsRegisteredException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService {
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
     public RegisterResponse register(RegisterRequest request){
@@ -22,7 +24,7 @@ public class AuthService {
         User user = User.builder()
                 .name(request.name())
                 .email(request.email())
-                .password(request.password())
+                .password(passwordEncoder.encode(request.password()))
                 .role(Role.SALLER)
                 .build();
 
