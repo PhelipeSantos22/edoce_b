@@ -1,6 +1,8 @@
 package com.edoce.edoce_b.controller;
 
+import com.edoce.edoce_b.dto.request.LoginRequest;
 import com.edoce.edoce_b.dto.request.RegisterRequest;
+import com.edoce.edoce_b.dto.response.LoginResponse;
 import com.edoce.edoce_b.dto.response.RegisterResponse;
 import com.edoce.edoce_b.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +23,11 @@ public class AuthController {
     public ResponseEntity<RegisterResponse> registerSeller(@RequestBody RegisterRequest request) {
         RegisterResponse response = authService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request){
+        LoginResponse response = authService.login(request);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

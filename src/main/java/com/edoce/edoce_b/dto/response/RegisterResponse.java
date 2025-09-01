@@ -1,4 +1,6 @@
 package com.edoce.edoce_b.dto.response;
 
 public record RegisterResponse(
-        boolean status, String Message){}
+        boolean status,
+        String Message
+){}

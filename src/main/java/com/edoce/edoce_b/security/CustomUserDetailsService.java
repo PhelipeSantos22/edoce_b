@@ -1,5 +1,6 @@
 package com.edoce.edoce_b.security;
 
+import com.edoce.edoce_b.exceptions.InvalidEmailOrPasswordException;
 import com.edoce.edoce_b.exceptions.UserIsRegisteredException;
 import com.edoce.edoce_b.model.User;
 import com.edoce.edoce_b.repository.UserRepository;
@@ -16,7 +17,7 @@ public class CustomUserDetailsService implements org.springframework.security.co
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
-                .orElseThrow(()-> new UserIsRegisteredException("Usuário não encontrado com email: "+ email));
+                .orElseThrow(()-> new InvalidEmailOrPasswordException("Email ou senha inválidos"));
         return new CustomUserDetails(user);
     }
 }
