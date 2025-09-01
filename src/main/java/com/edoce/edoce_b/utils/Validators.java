@@ -14,6 +14,7 @@ public interface Validators {
         return matcher.matches();
     }
 
+    // A senha deve ter no minimo 6 caracteres, Conter pelo menos uma letra maiuscula e conter pelo menos um numero
     default boolean isValidPassword(String password) {
         if (password == null || password.isEmpty()) {
             return false;

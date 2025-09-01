@@ -12,4 +12,9 @@ public class GlobalExecptionHandler {
     public ResponseEntity<RegisterResponse> handleUserIsRegistered(UserIsRegisteredException ex){
         return ResponseEntity.status(HttpStatus.CONFLICT).body(new RegisterResponse(false, ex.getMessage()));
     }
+
+    @ExceptionHandler(InvalidFieldsException.class)
+    public ResponseEntity<RegisterResponse> handleInvalidFilds(InvalidFieldsException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new RegisterResponse(false, ex.getMessage()));
+    }
 }
