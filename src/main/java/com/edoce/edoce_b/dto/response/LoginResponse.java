@@ -1,7 +1,7 @@
 package com.edoce.edoce_b.dto.response;
 
 public record LoginResponse (
-        boolean status,
+        boolean success,
         String message,
         String token
 ){}

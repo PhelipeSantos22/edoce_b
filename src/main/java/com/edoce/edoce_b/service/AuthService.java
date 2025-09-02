@@ -10,18 +10,15 @@ import com.edoce.edoce_b.model.Role;
 import com.edoce.edoce_b.model.User;
 import com.edoce.edoce_b.repository.UserRepository;
 import com.edoce.edoce_b.exceptions.UserIsRegisteredException;
-import com.edoce.edoce_b.security.CustomUserDetails;
 import com.edoce.edoce_b.security.JwtService;
 import com.edoce.edoce_b.utils.Validators;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -53,7 +50,7 @@ public class AuthService implements Validators {
     }
     public LoginResponse login(LoginRequest request){
         try {
-            Authentication auth = authenticationManager.authenticate(
+            authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.email(), request.password())
             );
         } catch (BadCredentialsException e) {
